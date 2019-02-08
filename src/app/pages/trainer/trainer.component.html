@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="container center">
+		<p>O nome do trainer é {{ trainer }}</p>
+		<p>3 vezes 2 é {{ valor * 2 }}</p>
+		<p>3 vezes 1 é {{ getValor() * 3 }}</p>
+		<p>false e true é {{ false && condicao }}</p>
+		<p>A condicao é {{ condicao ? 'Verdadeira' : 'Falsa' }}</p>
+		<p><img [src]="imagemPikachu"></p>
+		<button class="waves-effect waves-light btn" [disabled]="buttonDisabled">
+			Um botão qualquer
+		</button>
+		<div class="input-field">
+			<input id="email" type="email" class="validate">
+			<label for="email" [attr.data-error]="wrong" [attr.data-success]="right">E-mail</label>
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" (click)="onClick()">
+				Clique em mim!
+			</button>
+		</div>
+		<div class="input-field">
+			<input type="email" id="email" class="validate" [(ngModel)]="email">
+			<label for="email" [attr.data-error]="wrong" [attr.data-success]="right">E-mail</label>
+		</div>
+		<p>{{ email }}</p>
+		<div class="row">
+			<button class="waves-effect waves-light btn" [class.red]="clicked" (click)="onClick()">Clique em mim!</button>
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" [ngClass]="{
+			'yellow': clicked,
+			'purple': !clicked
+			}"
+			(click)="onClick()">
+				Clique em mim!
+			</button>			
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn"
+			[style.background-color]="clicked? 'blue' : 'red'" (click)="onClick()">
+				Clique em mim!²
+			</button>			
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" (click)="onClick('+')"> + </button>
+			<button class="waves-effect waves-light btn" (click)="onClick('-')"> - </button>
+			<p [style.font-size]="size + 'px'">Style usando Style Binding</p>
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" (click)="onClick()">Shazam</button>
+			<p *ngIf="is_show">Exemplo utilizando ngIf</p>
+		</div>
+		<app-trainer-child [trainers]="trainers" (removetrainer)="delete($event)"></app-trainer-child>
+	</div>
+</div>

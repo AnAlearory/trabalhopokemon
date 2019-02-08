@@ -1,0 +1,86 @@
+<div class="container">
+	<h1>Seja bem vindo novo treinador, cadastre-se abaixo e começe sua aventura!</h1>
+	<div class="row">
+		<form class="col s12 " #cadastro="ngForm" (ngSubmit)="onSubmit(cadastro)" >
+			<div class="row ">
+				<div class="input-field col s6">
+					<input [placeholder]="nome.value ? null : 'Nome'"  class="validate" id="nome" type="text" name="nome" #nome="ngModel" ngModel required>
+					<label for="nome" [attr.data-error]="wrong">{{ nome.value ? 'Nome' : null }}</label>
+				</div>
+				<div class="input-field col s6">
+					<input [placeholder]="email.value ? null : 'Email'" id="email" type="email" class="validate" name="email" #email="ngModel" ngModel required>
+					<label for="email" [attr.data-error]="wrong"> {{ email.value ? 'Email' : null }}</label>
+				</div>
+				<div class="col s6">
+					<label for="data-de-nascimento" class="active">Data de nascimento</label>
+					<input materialize="pickadate" [materializeParams]="[{ selectYears: 70 }]" type="text" id="data-de-nascimento" class="datepicker" name="data" ngModel required>
+				</div>
+			</div>
+
+			<h2>Selecione sua região inicial: </h2>
+			<p>
+				<input type="radio" name="grupo1" id="escolha1" value="1" #grupo1="ngModel" ngModel required>
+				<label for="escolha1">Kanto</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha2" value="2" ngModel>
+				<label for="escolha2" >Johtu</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha3" value="3" ngModel>
+				<label for="escolha3">Huenn</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha4" value="4" ngModel>
+				<label for="escolha4">Sinnoh</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha5" value="5" ngModel>
+				<label for="escolha5">Kalos</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha6" value="6" ngModel>
+				<label for="escolha6">Alola</label>
+			</p>
+			<p>
+				<input type="radio" name="grupo1" id="escolha7" value="7" ngModel>
+				<label for="escolha7">Unova</label>
+			</p>
+			<h2>Escolha seu pokemon inicial:</h2>
+			<div class="row">
+				<div class="input-field col s6">
+					<input placeholder="Nome do pokemon" id="nomePokemon" type="text" name="nomePokemon" [(ngModel)]="nomeInput">
+				</div>
+			</div>
+			<div class="row center">
+       			<button class="waves-effect waves-light btn" type="submit" [disabled]="(nomeInput == '')">Pesquisar</button>
+      		</div>
+
+			<button class="waves-effect waves-light btn right" type="submit" name="action"> Enviar
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+		<div class="row" *ngIf="error">
+      		<p class="red-text">Erro ao pesquisar Pokémon!</p>
+    	</div>
+    	<div class="row" *ngIf="pokemon">
+      		<!--Abaixo é o card que irá mostrar os resultados da pesquisa-->
+      		<div class="col l2 m3 s10">
+       			<!--Card médio que mostra uma sombra quando passamos o cursor por cima-->
+        		<div class="card">
+          			<!--Imagem do card-->
+         			<div class="card-image">
+            			<img [src]="pokemon.sprites.front_default">
+          			</div>
+          			<!--Conteúdo do card-->
+          			<div class="card-content">
+            			<p><b>Id:</b> {{ pokemon.id }}</p>
+            			<p><b>Altura:</b> {{ pokemon.height }}</p>
+            			<p><b>Peso:</b> {{ pokemon.weight }}</p>
+          			</div>
+        		</div>
+      		</div>
+    	</div>
+
+	</div>
+</div>
